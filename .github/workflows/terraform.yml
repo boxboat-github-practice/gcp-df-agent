@@ -1,0 +1,29 @@
+name: 'Terraform'
+
+on:
+  workflow_dispatch:
+
+jobs:
+    setup:
+        name: 'setup'
+        runs-on: ubuntu-latest    
+        defaults:
+          run:
+            shell: bash
+    
+        steps:
+        - uses: 'actions/checkout@v3'
+
+        - id: 'auth'
+          name: 'Authenticate to Google Cloud'
+          uses: 'google-github-actions/auth@v1'
+          with:
+            credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+
+        - name: Setup Terraform
+          uses: hashicorp/setup-terraform@v1
+
+        - name: Terraform Init
+          run: terraform init
+          env:
+            GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
