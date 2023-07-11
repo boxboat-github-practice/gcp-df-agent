@@ -1,4 +1,4 @@
-name: 'Terraform'
+name: 'tf-apply'
 
 on:
   workflow_dispatch:
@@ -26,5 +26,23 @@ jobs:
 
         - name: Terraform Init
           run: terraform init
+          env:
+            GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+        
+        - name: Terraform fmt
+          id: fmt
+          run: terraform fmt -check
+          env:
+            GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+        - name: Terraform Plan
+          id: plan
+          run: terraform plan -no-color
+          env:
+            GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+        - name: Terraform Apply
+          id: apply
+          run: terraform apply -auto-approve
           env:
             GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
