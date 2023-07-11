@@ -1,7 +1,14 @@
-resource "google_storage_bucket" "test-df" {
-  name          = "test_df_bucket-1212323246"
-  location      = "US"
-  force_destroy = true
-
-  uniform_bucket_level_access = true
+resource "google_dialogflow_cx_agent" "full_agent" {
+  display_name               = "dialogflowcx-agent"
+  location                   = "global"
+  default_language_code      = "en"
+  supported_language_codes   = ["es"]
+  time_zone                  = "America/New_York"
+  description                = "Example description."
+  avatar_uri                 = "https://cloud.google.com/_static/images/cloud/icons/favicons/onecloud/super_cloud.png"
+  enable_stackdriver_logging = true
+  enable_spell_correction    = true
+  speech_to_text_settings {
+    enable_speech_adaptation = true
+  }
 }
