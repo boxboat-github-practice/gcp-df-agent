@@ -20,8 +20,8 @@ jobs:
           with:
             credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
 
-        - name: Setup Terraform
-          uses: hashicorp/setup-terraform@v1
+        - name: HashiCorp - Setup Terraform
+          uses: hashicorp/setup-terraform@v2.0.3
 
         - name: Terraform Init
           run: terraform init
