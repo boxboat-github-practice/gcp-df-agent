@@ -5,7 +5,7 @@ provider "google" {
 }
 
 terraform {
-  required_version = "0.13"
+  required_version = "1.5.3"
 
   backend "gcs" {
     bucket = "df-terra"
