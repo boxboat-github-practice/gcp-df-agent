@@ -1,4 +1,5 @@
 # variable "" {}
-variable infotypet-infotype {
+variable "infotypet-infotype" {
   default = "FIRST_NAME"
+  type    = string
 }
