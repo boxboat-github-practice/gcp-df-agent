@@ -1,9 +1,9 @@
 
 # locals {
 #   info_type = {
-#     for key, val in var.inspect_config["info_types"] :
+#     for key, val in var.inspect_config :
 #     key => merge({
-#       name = val.info_type
+#       info_type = val.info_type
 #     })
 #   }
 # }
@@ -20,7 +20,7 @@ resource "google_data_loss_prevention_inspect_template" "inspection-template" {
 
   inspect_config {
     dynamic "info_types" {
-      for_each = var.inspect_config["info_types"]
+      for_each = var.info_types
       content {
         name = info_type.value["name"]
       }
