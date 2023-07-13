@@ -2,8 +2,9 @@
 
 module "inspection-template" {
   source       = "./module/dlp/inspection-template"
-  parent       = var.it_parent
-  description  = var.it_description
-  display_name = var.it_display_name
+  for_each     = var.template_map
+  parent       = each.value.it_parent
+  description  = each.value.it_description
+  display_name = each.value.it_display_name
 }
 

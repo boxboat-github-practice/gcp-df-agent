@@ -1,10 +1,7 @@
 # # variable "" {}
 
 #it_ inspection template
-variable "it_parent" {}
-variable "it_description" {}
-variable "it_display_name" {}
-
+variable "template_map" {}
 
 
 
