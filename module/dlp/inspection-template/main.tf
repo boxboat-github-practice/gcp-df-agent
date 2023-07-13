@@ -22,7 +22,7 @@ resource "google_data_loss_prevention_inspect_template" "inspection-template" {
     dynamic "info_types" {
       for_each = var.info_types
       content {
-        name = info_type.value["name"]
+        name = name.value["name"]
       }
     }
 
