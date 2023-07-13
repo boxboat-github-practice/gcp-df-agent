@@ -1,27 +1,27 @@
 
+locals {
+  info_type = {
+    for key, val in var.inspect_config :
+    key => merge({
+      name = val.info_type
+    })
+  }
+}
+output "print_info" {
+  value = local.info_type
+}
+
+
 resource "google_data_loss_prevention_inspect_template" "inspection-template" {
   parent       = var.parent
   description  = var.description
   display_name = var.display_name
 
+
   inspect_config {
     info_types {
-      name = "EMAIL_ADDRESS"
-    }
-    info_types {
-      name = "PERSON_NAME"
-    }
-    info_types {
-      name = "LAST_NAME"
-    }
-    info_types {
-      name = "DOMAIN_NAME"
-    }
-    info_types {
-      name = "PHONE_NUMBER"
-    }
-    info_types {
-      name = "FIRST_NAME"
+      for_each = local.info_type
+      name     = each.value.name
     }
 
     min_likelihood = "LIKELY"
@@ -103,3 +103,4 @@ resource "google_data_loss_prevention_inspect_template" "inspection-template" {
     }
   }
 }
+
