@@ -5,7 +5,9 @@ template_map = {
     it_description  = "My description sample"
     it_display_name = "dlp-inspect"
     it_inspect_config = {
-      info_types = ["EMAIL_ADDRESS", "PERSON_NAME"]
+      info_types = [
+        { "name" : "EMAIL_ADDRESS" },
+      { "name" : "PERSON_NAME" }]
     }
   },
   template-2 = {
@@ -13,7 +15,12 @@ template_map = {
     it_description  = "My description sample"
     it_display_name = "dlp-inspect-2"
     it_inspect_config = {
-      info_types = ["EMAIL_ADDRESS", "PERSON_NAME", "DOMAIN_NAME", "PHONE_NUMBER", "FIRST_NAME"]
+      info_types = [
+        { "name" : "EMAIL_ADDRESS" },
+        { "name" : "PERSON_NAME" },
+        { "name" : "DOMAIN_NAME" },
+        { "name" : "PHONE_NUMBER" },
+      { "name" : "FIRST_NAME" }]
     }
   }
 }
