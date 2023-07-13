@@ -19,9 +19,11 @@ resource "google_data_loss_prevention_inspect_template" "inspection-template" {
 
 
   inspect_config {
-    info_types {
+    dynamic "info_types" {
       for_each = local.info_type
-      name     = each.value.name
+      content {
+        name = info_type.value["name"]
+      }
     }
 
     min_likelihood = "LIKELY"
