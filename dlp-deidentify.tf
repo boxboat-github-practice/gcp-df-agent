@@ -7,7 +7,7 @@ resource "google_data_loss_prevention_deidentify_template" "basic" {
     info_type_transformations {
       transformations {
         info_types {
-          name = var.infotypet-infotype
+          name = "FIRST_NAME"
         }
 
         primitive_transformation {
