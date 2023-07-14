@@ -17,7 +17,7 @@ resource "google_data_loss_prevention_inspect_template" "inspection-template" {
 
   inspect_config {
     dynamic "info_types" {
-      for_each = var.info_types
+      for_each = local.info_type
       content {
         name = info_type.value["name"]
       }
