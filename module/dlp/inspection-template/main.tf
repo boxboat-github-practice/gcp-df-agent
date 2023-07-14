@@ -85,20 +85,16 @@ resource "google_data_loss_prevention_inspect_template" "inspection-template" {
         }
       }
     }
-
     limits {
-      max_findings_per_item    = 10
-      max_findings_per_request = 50
-      max_findings_per_info_type {
-        max_findings = "75"
-        info_type {
-          name = "PERSON_NAME"
-        }
-      }
-      max_findings_per_info_type {
-        max_findings = "80"
-        info_type {
-          name = "LAST_NAME"
+      max_findings_per_item    = var.inspect_config["limits"].max_findings_per_item
+      max_findings_per_request = var.inspect_config["limits"].max_findings_per_item
+      dynamic "max_findings_per_info_type" {
+        for_each = var.inspect_config["limits"].limits_list_mfpit
+        content {
+          max_findings = max_findings_per_info_type.value.max_findings_per_item
+          info_type {
+            name = max_findings_per_info_type.value.name
+          }
         }
       }
     }

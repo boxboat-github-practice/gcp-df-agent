@@ -6,6 +6,17 @@ template_map = {
     it_display_name = "dlp-inspect"
     it_inspect_config = {
       min_likelihood = "LIKELY"
+      limits = {
+        max_findings_per_item    = 2
+        max_findings_per_request = 3
+        limits_list_mfpit = [{
+          max_findings_per_item = "75",
+          name                  = "PERSON_NAME"
+          }, {
+          max_findings_per_item = "75",
+          name                  = "LAST_NAME"
+        }]
+      }
     }
     it_info_types = [
       { "name" : "EMAIL_ADDRESS" },
