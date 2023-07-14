@@ -6,6 +6,7 @@ locals {
       name = val.name
     })
   }
+
 }
 output "print_info_type" {
   value = local.info_type
@@ -24,7 +25,7 @@ resource "google_data_loss_prevention_inspect_template" "inspection-template" {
       }
     }
 
-    min_likelihood = var.min_likelihood
+    min_likelihood = var.inspect_config[min_likelihood].value
     rule_set {
       info_types {
         name = "EMAIL_ADDRESS"

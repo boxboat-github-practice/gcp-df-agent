@@ -8,5 +8,6 @@ module "inspection-template" {
   display_name   = each.value.it_display_name
   min_likelihood = each.value.it_min_likelihood
   info_types     = each.value.it_info_types
+  inspect_config = each.value.it_inspect_config
 }
 
