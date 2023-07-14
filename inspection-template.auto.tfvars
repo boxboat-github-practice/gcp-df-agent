@@ -23,7 +23,8 @@ template_map = {
       { "name" : "PERSON_NAME" },
       { "name" : "DOMAIN_NAME" },
       { "name" : "PHONE_NUMBER" },
-    { "name" : "FIRST_NAME" }]
+      { "name" : "FIRST_NAME" },
+    { "name" : "LAST_NAME" }]
 
   },
   template-2 = {
@@ -49,7 +50,8 @@ template_map = {
       { "name" : "PERSON_NAME" },
       { "name" : "DOMAIN_NAME" },
       { "name" : "PHONE_NUMBER" },
-    { "name" : "FIRST_NAME" }]
+      { "name" : "FIRST_NAME" },
+    { "name" : "LAST_NAME" }]
   }
 }
 
