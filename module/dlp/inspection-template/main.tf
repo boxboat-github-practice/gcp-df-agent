@@ -25,7 +25,7 @@ resource "google_data_loss_prevention_inspect_template" "inspection-template" {
       }
     }
 
-    min_likelihood = var.inspect_config["min_likelihood"].value
+    min_likelihood = var.inspect_config["min_likelihood"]
     rule_set {
       info_types {
         name = "EMAIL_ADDRESS"
