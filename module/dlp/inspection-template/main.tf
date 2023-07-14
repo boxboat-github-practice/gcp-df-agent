@@ -7,7 +7,9 @@ locals {
     })
   }
 }
-
+output "print_info_type" {
+  value = local.info_type
+}
 
 resource "google_data_loss_prevention_inspect_template" "inspection-template" {
   parent       = var.parent
