@@ -16,7 +16,6 @@ resource "google_data_loss_prevention_inspect_template" "inspection-template" {
   description  = var.description
   display_name = var.display_name
 
-
   inspect_config {
     dynamic "info_types" {
       for_each = local.info_type
@@ -25,7 +24,7 @@ resource "google_data_loss_prevention_inspect_template" "inspection-template" {
       }
     }
 
-    min_likelihood = "LIKELY"
+    min_likelihood = var.min_likelihood
     rule_set {
       info_types {
         name = "EMAIL_ADDRESS"
