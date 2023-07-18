@@ -1,16 +1,16 @@
-# resource "google_dialogflow_cx_agent" "full_agent" {
-#   display_name               = "dialogflowcx-agent"
-#   location                   = "global"
-#   default_language_code      = "en"
-#   supported_language_codes   = ["es"]
-#   time_zone                  = "America/New_York"
-#   description                = "Example description."
-#   avatar_uri                 = "https://cloud.google.com/_static/images/cloud/icons/favicons/onecloud/super_cloud.png"
-#   enable_stackdriver_logging = true
-#   enable_spell_correction    = true
-#   security_settings          = "projects/boxboat-dev/locations/global/securitySettings/c1da59c7b3f06a75"
-#   speech_to_text_settings {
-#     enable_speech_adaptation = true
-#   }
-# }
+module "full_agent" {
+  source                     = "./module/dialogflow"
+  for_each                   = var.agent_map
+  display_name               = each.value.display_name
+  location                   = each.value.location
+  default_language_code      = each.value.default_language_code
+  supported_language_codes   = each.value.supported_language_codes
+  time_zone                  = each.value.time_zone
+  description                = each.value.description
+  enable_stackdriver_logging = each.value.enable_stackdriver_logging
+  enable_spell_correction    = each.value.enable_spell_correction
+  security_settings          = each.value.security_settings
+  enable_speech_adaptation   = each.value.enable_speech_adaptation
+
+}
 

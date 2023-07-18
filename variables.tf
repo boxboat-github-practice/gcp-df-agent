@@ -1,7 +1,7 @@
 # # variable "" {}
 
 #it_ inspection template
-variable "template_map" {}
+variable "agent_map" {}
 
 
 
