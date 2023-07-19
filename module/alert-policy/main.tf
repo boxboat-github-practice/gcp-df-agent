@@ -10,14 +10,15 @@ resource "google_monitoring_alert_policy" "alert_policy" {
   # }
   alert_strategy {
     auto_close = var.as_auto_close
-    notification_rate_limit {
-      period = var.as_nrl_period
-    }
-    notification_channel_strategy {
-      notification_channel_names = var.as_ncs_notification_channel_names
-      renotify_interval          = var.as_ncs_renotify_interval
-    }
+    # notification_rate_limit {
+    #   period = var.as_nrl_period
+    # }
+    # notification_channel_strategy {
+    #   notification_channel_names = var.as_ncs_notification_channel_names
+    #   renotify_interval          = var.as_ncs_renotify_interval
+    # }
   }
+
   # user_labels = {
   #   foo = var.
   # }
