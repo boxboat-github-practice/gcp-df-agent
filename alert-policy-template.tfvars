@@ -234,3 +234,46 @@ alert_policy_map = {
       }
     ]
 } }
+
+
+
+
+
+
+
+cond_display_name           = "test condition"
+condition_type              = "condition_"
+ca_filter                   = null
+ca_duration                 = null
+ca_agg_per_series_aligner   = null
+ca_agg_group_by_fields      = null
+ca_agg_alignment_period     = null
+ca_agg_cross_series_reducer = null
+ca_trig_percent             = null
+ca_trig_count               = null
+
+cmqt_query                   = null
+cmqt_duration                = null
+cmqt_evaluation_missing_data = null
+cmqt_trig_count              = null
+cmqt_trig_percent            = null
+
+cml_filter           = null
+cml_label_extractors = null
+
+ct_threshold_value           = null
+ct_filter                    = "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\""
+ct_duration                  = "60s"
+ct_comparison                = "COMPARISON_GT"
+ct_evaluation_missing_data   = "EVALUATION_MISSING_DATA_INACTIVE"
+ct_denominator_filter        = null
+ct_dagg_per_series_aligner   = null
+ct_dagg_group_by_fields      = null
+ct_dagg_alignment_period     = null
+ct_dagg_cross_series_reducer = null
+ct_agg_per_series_aligner    = "ALIGN_RATE"
+ct_agg_group_by_fields       = null
+ct_agg_alignment_period      = "60s"
+ct_agg_cross_series_reducer  = null
+ct_trig_percent              = null
+ct_trig_count                = null
