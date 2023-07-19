@@ -15,7 +15,6 @@ variable "alert_policy_map" {}
 
 
 
-
 # variable "infotypet-infotype" {
 #   default = "FIRST_NAME"
 #   type    = string
