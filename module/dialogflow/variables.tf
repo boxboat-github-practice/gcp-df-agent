@@ -1,0 +1,10 @@
+variable "display_name" {}
+variable "location" {}
+variable "default_language_code" {}
+variable "supported_language_codes" {}
+variable "time_zone" {}
+variable "description" {}
+variable "enable_stackdriver_logging" {}
+variable "enable_spell_correction" {}
+variable "security_settings" {}
+variable "enable_speech_adaptation" {}
