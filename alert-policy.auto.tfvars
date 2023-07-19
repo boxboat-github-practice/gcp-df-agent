@@ -1,14 +1,12 @@
 alert_policy_map = {
   alert-1 = {
-    project                           = "boxboat-dev"
-    display_name                      = "My Alert Policy"
-    combiner                          = "OR"
-    enabled                           = true
-    notification_channels             = ["projects/boxboat-dev/notificationChannels/17444659692466700134"]
-    as_nrl_period                     = null
-    as_auto_close                     = "302400s"
-    as_ncs_notification_channel_names = null
-    as_ncs_renotify_interval          = null
+    project               = "boxboat-dev"
+    display_name          = "My Alert Policy"
+    combiner              = "OR"
+    enabled               = true
+    notification_channels = ["projects/boxboat-dev/notificationChannels/17444659692466700134"]
+    as_nrl_period         = null
+    as_auto_close         = "302400s"
     conditions_list = [
       {
         cond_display_name            = "test condition"
@@ -88,16 +86,14 @@ alert_policy_map = {
     ]
   },
   alert-2 = {
-    combiner                          = "OR"
-    project                           = "boxboat-dev"
-    display_name                      = "dialogflow-webhook-alerts"
-    combiner                          = "OR"
-    enabled                           = true
-    notification_channels             = ["projects/boxboat-dev/notificationChannels/17444659692466700134", ]
-    as_auto_close                     = "302400s"
-    as_nrl_period                     = "7200s"
-    as_ncs_notification_channel_names = ["projects/boxboat-dev/notificationChannels/17444659692466700134]"]
-    as_ncs_renotify_interval          = "3600s"
+    combiner              = "OR"
+    project               = "boxboat-dev"
+    display_name          = "dialogflow-webhook-alerts"
+    combiner              = "OR"
+    enabled               = true
+    notification_channels = ["projects/boxboat-dev/notificationChannels/17444659692466700134", ]
+    as_auto_close         = "302400s"
+    as_nrl_period         = "7200s"
     conditions_list = [
       {
         cond_display_name    = "url-error"
