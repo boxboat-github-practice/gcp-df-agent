@@ -11,13 +11,11 @@ resource "google_monitoring_alert_policy" "alert_policy" {
   alert_strategy {
     auto_close = var.as_auto_close
     notification_rate_limit {
-      for_each = var.conditions_list.condition_type == "matched_log" ? toset(["notification_rate_limit"]) : toset([])
-      period   = var.as_nrl_period
+      period = var.conditions_list.condition_type == "matched_log" ? toset([var.as_nrl_period]) : toset([])
     }
     notification_channel_strategy {
-      for_each                   = var.conditions_list.condition_type == "matched_log" ? toset(["notification_channel_strategy"]) : toset([])
-      notification_channel_names = var.as_ncs_notification_channel_names
-      renotify_interval          = var.as_ncs_renotify_interval
+      notification_channel_names = var.conditions_list.condition_type == "matched_log" ? toset([var.as_ncs_notification_channel_names]) : toset([])
+      renotify_interval          = var.conditions_list.condition_type == "matched_log" ? toset([var.as_ncs_renotify_interval]) : toset([])
     }
   }
 
