@@ -26,20 +26,39 @@ resource "google_monitoring_alert_policy" "alert_policy" {
     for_each = var.conditions_list
     content {
       display_name = conditions.value.cond_display_name
-      condition_absent {
-        duration = conditions.value.ca_duration
-        filter   = conditions.value.ca_filter
-        aggregations {
-          per_series_aligner   = conditions.value.ca_agg_per_series_aligner
-          group_by_fields      = conditions.value.ca_agg_group_by_fields
-          alignment_period     = conditions.value.ca_agg_alignment_period
-          cross_series_reducer = conditions.value.ca_agg_cross_series_reducer
-        }
-        trigger {
-          percent = conditions.value.ca_trig_percent
-          count   = conditions.value.ca_trig_count
+
+      dynamic condition_absent {
+        for_each = conditions.value.ca_duration ? ["condition_absent"] : []
+        content {
+          duration = conditions.value.ca_duration
+          filter   = conditions.value.ca_filter
+          aggregations {
+            per_series_aligner   = conditions.value.ca_agg_per_series_aligner
+            group_by_fields      = conditions.value.ca_agg_group_by_fields
+            alignment_period     = conditions.value.ca_agg_alignment_period
+            cross_series_reducer = conditions.value.ca_agg_cross_series_reducer
+          }
+          trigger {
+            percent = conditions.value.ca_trig_percent
+            count   = conditions.value.ca_trig_count
+          }
         }
       }
+
+      # condition_absent {
+      #   duration = conditions.value.ca_duration
+      #   filter   = conditions.value.ca_filter
+      #   aggregations {
+      #     per_series_aligner   = conditions.value.ca_agg_per_series_aligner
+      #     group_by_fields      = conditions.value.ca_agg_group_by_fields
+      #     alignment_period     = conditions.value.ca_agg_alignment_period
+      #     cross_series_reducer = conditions.value.ca_agg_cross_series_reducer
+      #   }
+      #   trigger {
+      #     percent = conditions.value.ca_trig_percent
+      #     count   = conditions.value.ca_trig_count
+      #   }
+      # }
       condition_monitoring_query_language {
         query                   = conditions.value.cmqt_query
         duration                = conditions.value.cmqt_duration
