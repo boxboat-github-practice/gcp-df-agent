@@ -47,6 +47,7 @@ alert_policy_map = {
         }, {
         cond_display_name            = "test condition2"
         condition_type               = "threshold"
+        ct_threshold_value           = null
         ct_filter                    = "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\""
         ct_duration                  = "120s"
         ct_comparison                = "COMPARISON_GT"
