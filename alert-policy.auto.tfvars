@@ -8,8 +8,6 @@ alert_policy_map = {
     policy_type           = "metrics"
     as_nrl_period         = null
     as_auto_close         = "302400s"
-    # as_ncs_notification_channel_names = null
-    # as_ncs_renotify_interval          = null
     conditions_list = [
       {
         cond_display_name            = "test condition"
@@ -89,29 +87,39 @@ alert_policy_map = {
     ]
   },
   alert-2 = {
-    combiner              = "OR"
     project               = "boxboat-dev"
-    display_name          = "dialogflow-webhook-alerts"
+    display_name          = "dialogflowcx-webhook-error"
     combiner              = "OR"
     enabled               = true
     notification_channels = ["projects/boxboat-dev/notificationChannels/17444659692466700134"]
     policy_type           = "logs"
     as_auto_close         = "302400s"
-    as_nrl_period         = "7200s"
-    # as_ncs_notification_channel_names = ["projects/boxboat-dev/notificationChannels/17444659692466700134]"]
-    # as_ncs_renotify_interval          = "3600s"
+    as_nrl_period         = "3600s"
     conditions_list = [
       {
         cond_display_name    = "url-error"
         condition_type       = "matched_log"
         cml_filter           = "97e1e4df-5eeb-4895-98f3-db045bc3aaba resource.labels.project_id = \"gcp-abs-svav-prod-prj-01\" URL_ERROR severity=ERROR\n"
         cml_label_extractors = null
-      },
+      }
+    ]
+  },
+  alert-3 = {
+    project               = "boxboat-dev"
+    display_name          = "dialogflowcx-webhook-latency"
+    combiner              = "OR"
+    enabled               = true
+    notification_channels = ["projects/boxboat-dev/notificationChannels/17444659692466700134"]
+    policy_type           = "logs"
+    as_auto_close         = "604800s"
+    as_nrl_period         = "43200s"
+    conditions_list = [
       {
         cond_display_name    = "url-error"
         condition_type       = "matched_log"
-        cml_filter           = "97e1e4df-5eeb-4895-98f3-db045bc3aaba resource.labels.project_id = \"gcp-abs-svav-prod-prj-01\" URL_ERROR severity=ERROR\n"
+        cml_filter           = "resource.type=\"global\" \"97e1e4df-5eeb-4895-98f3-db045bc3aaba\" jsonPayload.queryResult.webhookLatencies >\"7s\""
         cml_label_extractors = null
       },
     ]
-} }
+  }
+}
