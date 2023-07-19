@@ -21,8 +21,8 @@ alert_policy_map = {
 
     # Documentation
     # optional - Documentation that is included with notifications and incidents related to this policy
-    # doc_content   = "~./cpu-usage-doc.md"
-    # doc_mime_type = "text/markdown"
+    doc_content   = "~./cpu-usage-doc.md"
+    doc_mime_type = "text/markdown"
 
     # alert_strategy
     # optional - Control over how this alert policy's notification channels are notified
