@@ -1,12 +1,12 @@
 resource "google_monitoring_alert_policy" "alert_policy" {
   project               = var.project
   display_name          = var.display_name
-  combiner              = var.combiner
   enabled               = var.enabled
+  combiner              = var.combiner
   notification_channels = var.notification_channels
   documentation {
-    content   = var.doc_content
-    mime_type = var.doc_mime_type
+    content   = var.content
+    mime_type = var.mime_type
   }
   alert_strategy {
     auto_close = var.as_auto_close

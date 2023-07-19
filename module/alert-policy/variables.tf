@@ -1,11 +1,11 @@
 variable project {}
 variable display_name {}
-variable combiner {}
-variable enabled {}
-variable notification_channels {}
-variable doc_content {}
-variable doc_mime_type {}
 variable policy_type {}
+variable enabled {}
+variable combiner {}
+variable content {}
+variable mime_type {}
+variable notification_channels {}
 variable as_auto_close {}
 variable as_nrl_period {}
 # variable as_ncs_notification_channel_names {}
