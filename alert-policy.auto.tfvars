@@ -14,9 +14,9 @@ alert_policy_map = {
       {
         cond_display_name  = "test condition2"
         filter             = "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\""
-        duration           = "30s"
+        duration           = "120s"
         comparison         = "COMPARISON_GT"
-        alignment_period   = "30s"
+        alignment_period   = "120s"
         per_series_aligner = "ALIGN_RATE"
       }
     ]
@@ -36,9 +36,9 @@ alert_policy_map = {
       {
         cond_display_name  = "conditionb"
         filter             = "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\""
-        duration           = "30s"
+        duration           = "120s"
         comparison         = "COMPARISON_GT"
-        alignment_period   = "30s"
+        alignment_period   = "120s"
         per_series_aligner = "ALIGN_RATE"
       }
     ]
