@@ -10,13 +10,19 @@ resource "google_monitoring_alert_policy" "alert_policy" {
   # }
   alert_strategy {
     auto_close = var.as_auto_close
-    notification_rate_limit {
-      period = var.conditions_list.condition_type == "matched_log" ? var.as_nrl_period : []
+    dynamic notification_rate_limit {
+      for_each = var.policy_type == "logs" ? ["notification_rate_limit"] : []
+      content {
+        period = var.as_nrl_period
+      }
     }
-    # notification_channel_strategy {
-    #   notification_channel_names = var.conditions_list.condition_type == "matched_log" ? toset([var.as_ncs_notification_channel_names]) : toset([])
-    #   renotify_interval          = var.conditions_list.condition_type == "matched_log" ? toset([var.as_ncs_renotify_interval]) : toset([])
-    # }
+    dynamic notification_channel_strategy {
+      for_each = var.policy_type == "logs" ? ["notification_rate_limit"] : []
+      content {
+        notification_channel_names = var.as_ncs_notification_channel_names
+        renotify_interval          = var.as_ncs_renotify_interval
+      }
+    }
   }
 
   # user_labels = {
