@@ -58,9 +58,12 @@ resource "google_monitoring_alert_policy" "alert_policy" {
         }
       }
       dynamic condition_matched_log {
-        for_each         = conditions.value.condition_type == "matched_log" ? ["condition_matched_log"] : []
-        filter           = conditions.value.cml_filter
-        label_extractors = conditions.value.cml_label_extractors
+        for_each = conditions.value.condition_type == "matched_log" ? ["condition_matched_log"] : []
+        content {
+
+          filter           = conditions.value.cml_filter
+          label_extractors = conditions.value.cml_label_extractors
+        }
       }
       dynamic condition_threshold {
         for_each = conditions.value.condition_type == "threshold" ? ["condition_threshold"] : []
