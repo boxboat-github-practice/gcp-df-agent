@@ -4,10 +4,10 @@ resource "google_monitoring_alert_policy" "alert_policy" {
   combiner              = var.combiner
   enabled               = var.enabled
   notification_channels = var.notification_channels
-  # documentation {
-  #   doc_content   = var.doc_content
-  #   doc_mime_type = var.doc_mime_type
-  # }
+  documentation {
+    content   = var.doc_content
+    mime_type = var.doc_mime_type
+  }
   alert_strategy {
     auto_close = var.as_auto_close
     dynamic notification_rate_limit {
