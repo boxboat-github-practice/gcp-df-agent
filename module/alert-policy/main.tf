@@ -61,8 +61,8 @@ resource "google_monitoring_alert_policy" "alert_policy" {
       }
     }
 
-    user_labels = {
-      foo = "bar"
-    }
+  }
+  user_labels = {
+    foo = "bar"
   }
 }
