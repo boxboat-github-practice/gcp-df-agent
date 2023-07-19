@@ -80,13 +80,24 @@ alert_policy_map = {
         ct_trig_count                = null
       },
       {
-        cond_display_name         = "test condition3"
-        condition_type            = "condition_threshold"
-        ct_filter                 = "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\""
-        ct_duration               = "120s"
-        ct_comparison             = "COMPARISON_GT"
-        ct_agg_alignment_period   = "120s"
-        ct_agg_per_series_aligner = "ALIGN_RATE"
+        cond_display_name            = "test condition3"
+        condition_type               = "condition_threshold"
+        ct_threshold_value           = null
+        ct_filter                    = "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\""
+        ct_duration                  = "60s"
+        ct_comparison                = "COMPARISON_GT"
+        ct_evaluation_missing_data   = "EVALUATION_MISSING_DATA_INACTIVE"
+        ct_denominator_filter        = null
+        ct_dagg_per_series_aligner   = null
+        ct_dagg_group_by_fields      = null
+        ct_dagg_alignment_period     = null
+        ct_dagg_cross_series_reducer = null
+        ct_agg_per_series_aligner    = "ALIGN_RATE"
+        ct_agg_group_by_fields       = null
+        ct_agg_alignment_period      = "60s"
+        ct_agg_cross_series_reducer  = null
+        ct_trig_percent              = null
+        ct_trig_count                = null
       }
     ]
   },
@@ -100,22 +111,44 @@ alert_policy_map = {
     as_auto_close         = "302400s"
     conditions_list = [
       {
-        cond_display_name         = "conditiona"
-        condition_type            = "condition_threshold"
-        ct_filter                 = "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\""
-        ct_duration               = "60s"
-        ct_comparison             = "COMPARISON_GT"
-        ct_agg_alignment_period   = "60s"
-        ct_agg_per_series_aligner = "ALIGN_RATE"
+        cond_display_name            = "conditiona"
+        condition_type               = "condition_threshold"
+        ct_threshold_value           = null
+        ct_filter                    = "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\""
+        ct_duration                  = "60s"
+        ct_comparison                = "COMPARISON_GT"
+        ct_evaluation_missing_data   = "EVALUATION_MISSING_DATA_INACTIVE"
+        ct_denominator_filter        = null
+        ct_dagg_per_series_aligner   = null
+        ct_dagg_group_by_fields      = null
+        ct_dagg_alignment_period     = null
+        ct_dagg_cross_series_reducer = null
+        ct_agg_per_series_aligner    = "ALIGN_RATE"
+        ct_agg_group_by_fields       = null
+        ct_agg_alignment_period      = "60s"
+        ct_agg_cross_series_reducer  = null
+        ct_trig_percent              = null
+        ct_trig_count                = null
       },
       {
-        cond_display_name         = "conditionb"
-        condition_type            = "condition_threshold"
-        ct_filter                 = "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\""
-        ct_duration               = "120s"
-        ct_comparison             = "COMPARISON_GT"
-        ct_agg_alignment_period   = "120s"
-        ct_agg_per_series_aligner = "ALIGN_RATE"
+        cond_display_name            = "conditionb"
+        condition_type               = "condition_threshold"
+        ct_threshold_value           = null
+        ct_filter                    = "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\""
+        ct_duration                  = "60s"
+        ct_comparison                = "COMPARISON_GT"
+        ct_evaluation_missing_data   = "EVALUATION_MISSING_DATA_INACTIVE"
+        ct_denominator_filter        = null
+        ct_dagg_per_series_aligner   = null
+        ct_dagg_group_by_fields      = null
+        ct_dagg_alignment_period     = null
+        ct_dagg_cross_series_reducer = null
+        ct_agg_per_series_aligner    = "ALIGN_RATE"
+        ct_agg_group_by_fields       = null
+        ct_agg_alignment_period      = "60s"
+        ct_agg_cross_series_reducer  = null
+        ct_trig_percent              = null
+        ct_trig_count                = null
       }
     ]
 } }
