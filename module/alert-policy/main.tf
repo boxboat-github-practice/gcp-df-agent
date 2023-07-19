@@ -17,7 +17,7 @@ resource "google_monitoring_alert_policy" "alert_policy" {
       }
     }
     dynamic notification_channel_strategy {
-      for_each = var.policy_type == "metrics" ? ["notification_rate_limit"] : []
+      for_each = var.policy_type == "no-clue" ? ["notification_rate_limit"] : []
       content {
         notification_channel_names = var.as_ncs_notification_channel_names
         renotify_interval          = var.as_ncs_renotify_interval
