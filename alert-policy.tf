@@ -1,4 +1,5 @@
-resource "google_monitoring_alert_policy" "alert_policy" {
+module "alert_policy" {
+  source          = "./module/alert-policy"
   for_each        = var.alert_policy_map
   display_name    = each.value.display_name
   combiner        = each.value.combiner
