@@ -12,6 +12,7 @@ alert_policy_map = {
     conditions_list = [
       {
         cond_display_name            = "test condition"
+        condition_type               = "condition_threshold"
         ca_filter                    = null
         ca_duration                  = null
         ca_agg_per_series_aligner    = null
@@ -45,6 +46,7 @@ alert_policy_map = {
         ct_trig_count                = null
         }, {
         cond_display_name            = "test condition2"
+        condition_type               = "condition_threshold"
         ca_filter                    = null
         ca_duration                  = null
         ca_agg_per_series_aligner    = null
@@ -79,6 +81,7 @@ alert_policy_map = {
       },
       {
         cond_display_name         = "test condition3"
+        condition_type            = "condition_threshold"
         ct_filter                 = "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\""
         ct_duration               = "120s"
         ct_comparison             = "COMPARISON_GT"
@@ -98,6 +101,7 @@ alert_policy_map = {
     conditions_list = [
       {
         cond_display_name         = "conditiona"
+        condition_type            = "condition_threshold"
         ct_filter                 = "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\""
         ct_duration               = "60s"
         ct_comparison             = "COMPARISON_GT"
@@ -106,6 +110,7 @@ alert_policy_map = {
       },
       {
         cond_display_name         = "conditionb"
+        condition_type            = "condition_threshold"
         ct_filter                 = "metric.type=\"compute.googleapis.com/instance/disk/write_bytes_count\" AND resource.type=\"gce_instance\""
         ct_duration               = "120s"
         ct_comparison             = "COMPARISON_GT"
