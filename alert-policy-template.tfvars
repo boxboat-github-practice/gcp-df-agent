@@ -1,9 +1,43 @@
 alert_policy_map = {
   alert-1 = {
+    # optional - The ID of the project in which the resource belongs
+    project = "boxboat-dev"
     # required - A short name or phrase used to identify policy
     display_name = "My Alert Policy"
     # required - How to combine the results of conditions ["AND", "OR", "AND_WITH_MATCHING_RESOURCE"]
     combiner = "OR"
+    # optional Whether or not the policy is enabled.
+    enabled = true
+    #optional - This field is intended to be used for organizing and identifying the AlertPolicy objects
+    user_labels = {
+      foo = "bar"
+    }
+    # Optional - Identifies the notification channels to which notifications should be sent when incidents are opened or closed or when new violations occur on an already opened incident
+    # projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]
+    notification_channels = ["projects/boxboat-dev/notificationChannels/[channelid]", ]
+    # optional - Documentation that is included with notifications and incidents related to this policy
+    documentation = {
+      content   = "~./cpu-usage-doc.md"
+      mime_type = "text/markdown"
+    }
+    # optional - Control over how this alert policy's notification channels are notified
+    alert_strategy = {
+      # Required for alert policies with a LogMatch condition
+      notification_rate_limit = {
+        # optional - Not more than one notification per period.
+        period = 1
+      }
+      # optional - If an alert policy that was active has no data for this long, any open incidents will close
+      auto_close = "302400s"
+      # optional - Control over how the notification channels in notification_channels are notified when this alert fire
+      notification_channel_strategy = {
+        # optional - The notification channels that these settings apply to
+        # projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
+        notification_channel_names = ["projects/boxboat-dev/notificationChannels/[channelid]"]
+        # optional - The frequency at which to send reminder notifications for open incidents.
+        renotify_interval = "3600s"
+      }
+    }
     # required - a list of conditions for the policy
     conditions_list = [
       {
@@ -98,7 +132,7 @@ alert_policy_map = {
         # Condition > Condition_Threshold > Forcast_Options
         # optional - When this field is present, the MetricThreshold condition forecasts whether the time series is predicted to violate the threshold within the forecastHorizon.
         # optional - The length of time into the future to forecast 
-        ct_forecast_horizon = "3600s"
+        # ct_forecast_horizon = "3600s"
 
         #  ----------
         # Condition > Condition_Threshold > Aggregations
@@ -149,13 +183,13 @@ alert_policy_map = {
         ct_dagg_group_by_fields      = null
         ct_dagg_alignment_period     = null
         ct_dagg_cross_series_reducer = null
-        ct_forecast_horizon          = "3600s"
-        ct_agg_per_series_aligner    = "ALIGN_RATE"
-        ct_agg_group_by_fields       = null
-        ct_agg_alignment_period      = "60s"
-        ct_agg_cross_series_reducer  = null
-        ct_trig_percent              = null
-        ct_trig_count                = null
+        # ct_forecast_horizon          = "3600s"
+        ct_agg_per_series_aligner   = "ALIGN_RATE"
+        ct_agg_group_by_fields      = null
+        ct_agg_alignment_period     = "60s"
+        ct_agg_cross_series_reducer = null
+        ct_trig_percent             = null
+        ct_trig_count               = null
       },
       {
         cond_display_name         = "test condition3"

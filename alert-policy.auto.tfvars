@@ -1,10 +1,45 @@
 alert_policy_map = {
   alert-1 = {
+
+    # optional - The ID of the project in which the resource belongs
+    project = "boxboat-dev"
     # required - A short name or phrase used to identify policy
     display_name = "My Alert Policy"
     # required - How to combine the results of conditions ["AND", "OR", "AND_WITH_MATCHING_RESOURCE"]
     combiner = "OR"
-    # required - a list of conditions for the policy
+    # optional Whether or not the policy is enabled.
+    enabled = true
+
+    # Optional - Identifies the notification channels to which notifications should be sent when incidents are opened or closed or when new violations occur on an already opened incident
+    # projects/[PROJECT_ID]/notificationChannels/[CHANNEL_ID]
+    notification_channels = ["projects/boxboat-dev/notificationChannels/17444659692466700134"]
+
+    # #optional - This field is intended to be used for organizing and identifying the AlertPolicy objects
+    # user_labels = {
+    #   foo = "bar"
+    # }
+
+    # Documentation
+    # optional - Documentation that is included with notifications and incidents related to this policy
+    # doc_content   = "~./cpu-usage-doc.md"
+    # doc_mime_type = "text/markdown"
+
+    # alert_strategy
+    # optional - Control over how this alert policy's notification channels are notified
+    # Required for alert policies with a LogMatch condition
+    # optional - Not more than one notification per period.
+    as_nrl_period = "7200s"
+    # optional - If an alert policy that was active has no data for this long, any open incidents will close
+    as_auto_close = "302400s"
+
+    # notification_channel_strategy
+    # optional - Control over how the notification channels in notification_channels are notified when this alert fire
+    # optional - The notification channels that these settings apply to
+    # projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
+    as_ncs_notification_channel_names = ["projects/boxboat-dev/notificationChannels/17444659692466700134]"]
+    # optional - The frequency at which to send reminder notifications for open incidents.
+    as_ncs_renotify_interval = "3600s"
+
     conditions_list = [
       {
         # ---------------------------------------------------------------------------------------
@@ -168,8 +203,18 @@ alert_policy_map = {
     ]
   },
   alert-2 = {
-    display_name = "My Other Alert Policy"
-    combiner     = "OR"
+    combiner              = "OR"
+    project               = "boxboat-dev"
+    display_name          = "My Other Alert Policy"
+    combiner              = "OR"
+    enabled               = true
+    notification_channels = ["projects/boxboat-dev/notificationChannels/17444659692466700134", ]
+    # doc_content                       = "~./cpu-usage-doc.md"
+    # doc_mime_type                     = "text/markdown"
+    as_nrl_period                     = "7200s"
+    as_auto_close                     = "302400s"
+    as_ncs_notification_channel_names = ["projects/boxboat-dev/notificationChannels/17444659692466700134"]
+    as_ncs_renotify_interval          = "3600s"
     conditions_list = [
       {
         cond_display_name         = "conditiona"

@@ -1,6 +1,26 @@
 resource "google_monitoring_alert_policy" "alert_policy" {
-  display_name = var.display_name
-  combiner     = var.combiner
+  project               = var.project
+  display_name          = var.display_name
+  combiner              = var.combiner
+  enabled               = var.enabled
+  notification_channels = var.notification_channels
+  # documentation {
+  #   doc_content   = var.doc_content
+  #   doc_mime_type = var.doc_mime_type
+  # }
+  alert_strategy {
+    auto_close = var.as_auto_close
+    notification_rate_limit {
+      period = var.as_nrl_period
+    }
+    notification_channel_strategy {
+      notification_channel_names = var.as_ncs_notification_channel_names
+      renotify_interval          = var.as_ncs_renotify_interval
+    }
+  }
+  # user_labels = {
+  #   foo = var.
+  # }
   dynamic conditions {
     for_each = var.conditions_list
     content {
@@ -45,9 +65,9 @@ resource "google_monitoring_alert_policy" "alert_policy" {
           alignment_period     = conditions.value.ct_dagg_alignment_period
           cross_series_reducer = conditions.value.ct_dagg_cross_series_reducer
         }
-        forecast_options {
-          forecast_horizon = conditions.value.ct_forecast_horizon
-        }
+        # forecast_options {
+        #   forecast_horizon = conditions.value.ct_forecast_horizon
+        # }
         aggregations {
           per_series_aligner   = conditions.value.ct_agg_per_series_aligner
           group_by_fields      = conditions.value.ct_agg_group_by_fields
@@ -61,8 +81,5 @@ resource "google_monitoring_alert_policy" "alert_policy" {
       }
     }
 
-  }
-  user_labels = {
-    foo = "bar"
   }
 }
