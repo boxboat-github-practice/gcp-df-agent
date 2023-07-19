@@ -1,3 +1,3 @@
-display_name    = {}
-combiner        = {}
-conditions_list = {}
+variable display_name {}
+variable combiner {}
+variable conditions_list {}
