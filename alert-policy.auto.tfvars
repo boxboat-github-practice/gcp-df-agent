@@ -99,7 +99,7 @@ alert_policy_map = {
       {
         cond_display_name    = "url-error"
         condition_type       = "matched_log"
-        cml_filter           = "97e1e4df-5eeb-4895-98f3-db045bc3aaba resource.labels.project_id = \"gcp-abs-svav-prod-prj-01\" URL_ERROR severity=ERROR\n"
+        cml_filter           = "severity=ERROR\n"
         cml_label_extractors = null
       }
     ]
@@ -117,7 +117,7 @@ alert_policy_map = {
       {
         cond_display_name    = "url-error"
         condition_type       = "matched_log"
-        cml_filter           = "resource.type=\"global\" \"97e1e4df-5eeb-4895-98f3-db045bc3aaba\" jsonPayload.queryResult.webhookLatencies >\"7s\""
+        cml_filter           = "jsonPayload.queryResult.webhookLatencies >\"7s\""
         cml_label_extractors = null
       },
     ]
