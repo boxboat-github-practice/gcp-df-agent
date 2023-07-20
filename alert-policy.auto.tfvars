@@ -143,7 +143,7 @@ alert_policy_map = {
       {
         cond_display_name    = "urzcdczd"
         condition_type       = "matched_log"
-        cml_filter           = "stuff >\"7s\""
+        cml_filter           = "jsonPayload.queryResult.webhookLatencies >\"17s\""
         cml_label_extractors = null
       },
     ]
@@ -163,7 +163,7 @@ alert_policy_map = {
       {
         cond_display_name    = "moreconditions"
         condition_type       = "matched_log"
-        cml_filter           = "stuff >\"17s\""
+        cml_filter           = "jsonPayload.queryResult.webhookLatencies >\"27s\""
         cml_label_extractors = null
       },
     ]
@@ -183,7 +183,7 @@ alert_policy_map = {
       {
         cond_display_name    = "moreconditionsmore"
         condition_type       = "matched_log"
-        cml_filter           = "stuff >\"37s\""
+        cml_filter           = "jsonPayload.queryResult.webhookLatencies >\"37s\""
         cml_label_extractors = null
       },
     ]
@@ -202,7 +202,7 @@ alert_policy_map = {
       {
         cond_display_name    = "moreconditionsmoremore"
         condition_type       = "matched_log"
-        cml_filter           = "stuff >\"39s\""
+        cml_filter           = "jsonPayload.queryResult.webhookLatencies >\"47s\""
         cml_label_extractors = null
       },
     ]
