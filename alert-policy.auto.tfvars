@@ -127,5 +127,84 @@ alert_policy_map = {
         cml_label_extractors = null
       },
     ]
+  },
+  alert-4 = {
+    project               = "boxboat-dev"
+    display_name          = "dialosdfwef"
+    policy_type           = "logs"
+    enabled               = true
+    combiner              = "OR"
+    doc_content           = "This is an alert policy for sfdvswef"
+    doc_mime_type         = "text/markdown"
+    notification_channels = ["projects/boxboat-dev/notificationChannels/17444659692466700134"]
+    as_auto_close         = "604800s"
+    as_nrl_period         = "43200s"
+    conditions_list = [
+      {
+        cond_display_name    = "urzcdczd"
+        condition_type       = "matched_log"
+        cml_filter           = "stuff >\"7s\""
+        cml_label_extractors = null
+      },
+    ]
+  },
+  alert-4 = {
+    project               = "boxboat-dev"
+    display_name          = "morealerts"
+    policy_type           = "logs"
+    enabled               = true
+    combiner              = "OR"
+    doc_content           = "This is an alert policy to make a bunch"
+    doc_mime_type         = "text/markdown"
+    notification_channels = ["projects/boxboat-dev/notificationChannels/17444659692466700134"]
+    as_auto_close         = "604800s"
+    as_nrl_period         = "43200s"
+    conditions_list = [
+      {
+        cond_display_name    = "moreconditions"
+        condition_type       = "matched_log"
+        cml_filter           = "stuff >\"17s\""
+        cml_label_extractors = null
+      },
+    ]
+  },
+  alert-5 = {
+    project               = "boxboat-dev"
+    display_name          = "morealertsmore"
+    policy_type           = "logs"
+    enabled               = true
+    combiner              = "OR"
+    doc_content           = "This is an alert policy to make a bunch more"
+    doc_mime_type         = "text/markdown"
+    notification_channels = ["projects/boxboat-dev/notificationChannels/17444659692466700134"]
+    as_auto_close         = "604800s"
+    as_nrl_period         = "43200s"
+    conditions_list = [
+      {
+        cond_display_name    = "moreconditionsmore"
+        condition_type       = "matched_log"
+        cml_filter           = "stuff >\"37s\""
+        cml_label_extractors = null
+      },
+    ]
+    }, alert-6 = {
+    project               = "boxboat-dev"
+    display_name          = "morealertsmoremore"
+    policy_type           = "logs"
+    enabled               = true
+    combiner              = "OR"
+    doc_content           = "This is an alert policy to make a bunch more more"
+    doc_mime_type         = "text/markdown"
+    notification_channels = ["projects/boxboat-dev/notificationChannels/17444659692466700134"]
+    as_auto_close         = "604800s"
+    as_nrl_period         = "43200s"
+    conditions_list = [
+      {
+        cond_display_name    = "moreconditionsmoremore"
+        condition_type       = "matched_log"
+        cml_filter           = "stuff >\"39s\""
+        cml_label_extractors = null
+      },
+    ]
   }
 }
