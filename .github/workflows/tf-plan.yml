@@ -2,6 +2,11 @@ name: 'tf-plan'
 
 on:
   workflow_dispatch:
+    inputs:
+      our_value:
+        type: "string"
+        description: 'the value we need to input'
+        required: true
 
 jobs:
     setup:
