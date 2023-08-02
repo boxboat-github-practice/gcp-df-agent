@@ -44,9 +44,17 @@ jobs:
     environment: ${{needs.presteps.outputs.env_name}}
     steps:
       - uses: actions/checkout@v3
+
+      # - name: Setup terraform variables
+      #   id: tfvars
+      #   run: |-
+      #     cat > pipeline.auto.tfvars <<EOF
+      #     project_id="${{ env.PROJECT_ID }}"
+      #     location="${{ env.LOCATION }}"
+      #     EOF
+
       - uses: boxboat-github-practice/terraform-gcp-actions@main
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           terraform-version: 1.5.3
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-        #   tf-var-file: "boxboat-github-practice.tfvars"
