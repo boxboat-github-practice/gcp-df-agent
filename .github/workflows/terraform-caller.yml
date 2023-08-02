@@ -14,7 +14,7 @@ permissions:
 jobs:
   presteps:
     runs-on: ubuntu-latest
-    name: Terraform
+    name: presteps
     outputs:
       env_name: ${{ steps.branch-based-env.outputs.env_name }}
     steps:
@@ -43,6 +43,7 @@ jobs:
     needs: presteps
     environment: ${{needs.presteps.outputs.env_name}}
     steps:
+      - uses: actions/checkout@v3
       - uses: boxboat-github-practice/terraform-gcp-actions@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
