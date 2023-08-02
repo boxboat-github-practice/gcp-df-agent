@@ -12,15 +12,40 @@ permissions:
   pull-requests: write
 
 jobs:
+  presteps:
+    runs-on: ubuntu-latest
+    name: Terraform
+    outputs:
+      env_name: ${{ steps.branch-based-env.outputs.env_name }}
+    steps:
+      - uses: actions/checkout@v3
+      #Step to create and output vars file
+      - id: branch-based-env
+        run: |
+          echo "Running on branch ${{ github.ref }}"
+          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            echo "env_name=production" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.ref }}" = "refs/heads/production" ]; then
+            echo "env_name=production" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.ref }}" = "refs/heads/staging" ]; then
+            echo "env_name=staging" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.ref }}" = "refs/heads/development" ]; then
+            echo "env_name=development" >> "$GITHUB_OUTPUT"
+          else
+            echo "env_name=development" >> "$GITHUB_OUTPUT"
+          fi
+
+      - run: echo "I'm using variable ${{ steps.branch-based-env.outputs.env_name }}"
+
   terraform:
     runs-on: ubuntu-latest
     name: Terraform
-    environment: dev
+    needs: presteps
+    environment: ${{needs.presteps.outputs.env_name}}
     steps:
-      - uses: actions/checkout@v3
-      - uses: boxboat-github-practice/gcp-df-agent@development
+      - uses: boxboat-github-practice/terraform-gcp-actions@main
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          terraform-version: 1.3.4
+          terraform-version: 1.5.3
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         #   tf-var-file: "boxboat-github-practice.tfvars"
