@@ -1,0 +1,66 @@
+name: "terraform"
+on:
+  pull_request:
+    branches:
+      - main
+      - production
+      - staging
+      - development
+    types: [opened, closed, edited, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  presteps:
+    runs-on: ubuntu-latest
+    name: presteps
+    outputs:
+      env_name: ${{ steps.branch-based-env.outputs.env_name }}
+    steps:
+      - uses: actions/checkout@v3
+      # Step to create and output env_name variable
+      - id: branch-based-env
+        run: |
+          echo "Running on source branch: ${{ github.head_ref }}"
+          echo "Running on target branch: ${{ github.base_ref }}"
+
+          case "${{ github.base_ref }}" in
+            main|production)
+              echo "env_name=production" >> $GITHUB_OUTPUT
+              ;;
+            staging)
+              echo "env_name=staging" >> $GITHUB_OUTPUT
+              ;;
+            development)
+              echo "env_name=dev" >> $GITHUB_OUTPUT
+              ;;
+            *)
+              echo "env_name=dev" >> $GITHUB_OUTPUT
+              ;;
+          esac
+
+      - run: echo "I'm using variable ${{ steps.branch-based-env.outputs.env_name }}"
+
+  terraform:
+    runs-on: ubuntu-latest
+    name: Terraform
+    needs: presteps
+    environment: ${{ needs.presteps.outputs.env_name }}
+    steps:
+      - uses: actions/checkout@v3
+
+      # - name: Setup terraform variables
+      #   id: tfvars
+      #   run: |-
+      #     cat > pipeline.auto.tfvars <<EOF
+      #     project_id="${{ env.PROJECT_ID }}"
+      #     location="${{ env.LOCATION }}"
+      #     EOF
+
+      - uses: boxboat-github-practice/terraform-gcp-actions@main
+        with:
+          terraform-version: 1.5.3
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
