@@ -18,8 +18,8 @@ jobs:
     outputs:
       env_name: ${{ steps.branch-based-env.outputs.env_name }}
     steps:
-      - uses: actions/checkout@v3
-      #Step to create and output vars file
+      - uses: actions/checkout@v2
+      # Step to create and output env_name variable
       - id: branch-based-env
         run: |
           echo "Running on branch ${{ github.ref }}"
@@ -38,14 +38,13 @@ jobs:
               ;;
           esac
 
-      - run: echo "env_name=${{ steps.branch-based-env.outputs.env_name }}" >> $GITHUB_ENV
       - run: echo "I'm using variable ${{ steps.branch-based-env.outputs.env_name }}"
 
   terraform:
     runs-on: ubuntu-latest
     name: Terraform
     needs: presteps
-    environment: ${{needs.presteps.outputs.env_name}}
+    environment: ${{ needs.presteps.outputs.env_name }}
     steps:
       - uses: actions/checkout@v3
 
