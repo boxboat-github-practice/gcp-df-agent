@@ -23,17 +23,20 @@ jobs:
       - id: branch-based-env
         run: |
           echo "Running on branch ${{ github.ref }}"
-          if [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            echo "env_name=production" >> "$GITHUB_OUTPUT"
-          elif [ "${{ github.ref }}" = "refs/heads/production" ]; then
-            echo "env_name=production" >> "$GITHUB_OUTPUT"
-          elif [ "${{ github.ref }}" = "refs/heads/staging" ]; then
-            echo "env_name=staging" >> "$GITHUB_OUTPUT"
-          elif [ "${{ github.ref }}" = "refs/heads/development" ]; then
-            echo "env_name=dev" >> "$GITHUB_OUTPUT"
-          else
-            echo "env_name=dev" >> "$GITHUB_OUTPUT"
-          fi
+          case "${{ github.ref }}" in
+            refs/heads/main|refs/heads/production)
+              echo "env_name=production" >> $GITHUB_ENV
+              ;;
+            refs/heads/staging)
+              echo "env_name=staging" >> $GITHUB_ENV
+              ;;
+            refs/heads/development)
+              echo "env_name=dev" >> $GITHUB_ENV
+              ;;
+            *)
+              echo "env_name=dev" >> $GITHUB_ENV
+              ;;
+          esac
 
       - run: echo "I'm using variable ${{ steps.branch-based-env.outputs.env_name }}"
 
