@@ -25,7 +25,7 @@ jobs:
           echo "Running on source branch: ${{ github.head_ref }}"
           echo "Running on target branch: ${{ github.base_ref }}"
 
-          case ${{ github.base_ref }} in
+          case "${{ github.base_ref }}" in
             main|production)
               echo "env_name=production" >> $GITHUB_OUTPUT
               ;;
