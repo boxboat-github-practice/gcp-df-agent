@@ -19,22 +19,24 @@ jobs:
       env_name: ${{ steps.branch-based-env.outputs.env_name }}
     steps:
       - uses: actions/checkout@v3
-      #Step to create and output vars file
+      # Step to create and output env_name variable
       - id: branch-based-env
         run: |
-          echo "Running on branch ${{ github.ref }}"
-          case "${{ github.ref }}" in
-            refs/heads/main|refs/heads/production)
-              echo "env_name=production" >> $GITHUB_ENV
+          echo "Running on source branch: ${{ github.head_ref }}"
+          echo "Running on target branch: ${{ github.base_ref }}"
+
+          case ${{ github.base_ref }} in
+            main|production)
+              echo "env_name=production" >> $GITHUB_OUTPUT
               ;;
-            refs/heads/staging)
-              echo "env_name=staging" >> $GITHUB_ENV
+            staging)
+              echo "env_name=staging" >> $GITHUB_OUTPUT
               ;;
-            refs/heads/development)
-              echo "env_name=dev" >> $GITHUB_ENV
+            development)
+              echo "env_name=dev" >> $GITHUB_OUTPUT
               ;;
             *)
-              echo "env_name=dev" >> $GITHUB_ENV
+              echo "env_name=dev" >> $GITHUB_OUTPUT
               ;;
           esac
 
@@ -44,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Terraform
     needs: presteps
-    environment: ${{needs.presteps.outputs.env_name}}
+    environment: ${{ needs.presteps.outputs.env_name }}
     steps:
       - uses: actions/checkout@v3
 
