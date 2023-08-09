@@ -1,5 +1,5 @@
 locals {
-  alert_policy_map = jsondecode(file(var.alert_policy_map))["alert_policy"]
+  alert_policy_map = jsondecode(file(var.alert_policy_map))["alert_policy_map"]
 }
 module "alert_policy" {
   source                = "./module/alert-policy"
