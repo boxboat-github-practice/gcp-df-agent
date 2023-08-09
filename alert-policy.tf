@@ -1,6 +1,9 @@
+locals {
+  alert_policy_map = jsondecode(file(var.alert_policy_map))["alert_policy"]
+}
 module "alert_policy" {
   source                = "./module/alert-policy"
-  for_each              = var.alert_policy_map
+  for_each              = local.alert_policy_map
   project               = each.value.project
   display_name          = each.value.display_name
   policy_type           = each.value.policy_type
