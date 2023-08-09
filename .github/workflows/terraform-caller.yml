@@ -1,11 +1,12 @@
 name: "terraform"
 on:
-  push:
-    branches:
-      - development
   pull_request:
     branches:
+      - main
+      - production
+      - staging
       - development
+    types: [opened, closed, edited, reopened]
 
 permissions:
   contents: read
