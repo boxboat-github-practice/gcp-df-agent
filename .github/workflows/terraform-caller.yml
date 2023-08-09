@@ -22,16 +22,23 @@ jobs:
       # Step to create and output env_name variable
       - id: branch-based-env
         run: |
-          echo "Running on branch ${{ github.ref }}"
-          if [[ "${{ github.ref }}" == "refs/heads/main" || "${{ github.ref }}" == "refs/heads/production" ]]; then
-            echo "env_name=production" >> $GITHUB_ENV
-          elif [[ "${{ github.ref }}" == "refs/heads/staging" ]]; then
-            echo "env_name=staging" >> $GITHUB_ENV
-          elif [[ "${{ github.ref }}" == "refs/heads/development" ]]; then
-            echo "env_name=dev" >> $GITHUB_ENV
-          else
-            echo "env_name=dev" >> $GITHUB_ENV
-          fi
+          echo "Running on source branch: ${{ github.head_ref }}"
+          echo "Running on target branch: ${{ github.base_ref }}"
+
+          case ${{ github.base_ref }} in
+            main|production)
+              echo "env_name=production" >> $GITHUB_ENV
+              ;;
+            staging)
+              echo "env_name=staging" >> $GITHUB_ENV
+              ;;
+            development)
+              echo "env_name=dev" >> $GITHUB_ENV
+              ;;
+            *)
+              echo "env_name=dev" >> $GITHUB_ENV
+              ;;
+          esac
 
       - run: echo "I'm using variable ${{ steps.branch-based-env.outputs.env_name }}"
 
