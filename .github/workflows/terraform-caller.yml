@@ -38,6 +38,7 @@ jobs:
               ;;
           esac
 
+      - run: echo "env_name=${{ steps.branch-based-env.outputs.env_name }}" >> $GITHUB_ENV
       - run: echo "I'm using variable ${{ steps.branch-based-env.outputs.env_name }}"
 
   terraform:
