@@ -18,7 +18,7 @@ jobs:
     outputs:
       env_name: ${{ steps.branch-based-env.outputs.env_name }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       # Step to create and output env_name variable
       - id: branch-based-env
         run: |
@@ -27,16 +27,16 @@ jobs:
 
           case ${{ github.base_ref }} in
             main|production)
-              echo "env_name=production" >> $GITHUB_ENV
+              echo "env_name=production" >> $GITHUB_OUTPUT
               ;;
             staging)
-              echo "env_name=staging" >> $GITHUB_ENV
+              echo "env_name=staging" >> $GITHUB_OUTPUT
               ;;
             development)
-              echo "env_name=dev" >> $GITHUB_ENV
+              echo "env_name=dev" >> $GITHUB_OUTPUT
               ;;
             *)
-              echo "env_name=dev" >> $GITHUB_ENV
+              echo "env_name=dev" >> $GITHUB_OUTPUT
               ;;
           esac
 
